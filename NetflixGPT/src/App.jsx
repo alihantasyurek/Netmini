@@ -1,13 +1,11 @@
-import { useState } from "react";
+import Body from "./components/Body";
+import { createBrowserRouter } from "react-router";
+import Login from "./components/Login";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
-      <h1 className="m-4 p-4 text-red-900">Hello world</h1>
-    </>
-  );
+  return <Body />;
 }
+
+//TODO workspaces - alt tab
 
 export default App;
