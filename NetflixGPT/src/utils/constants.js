@@ -1,0 +1,22 @@
+export const LOGO =
+	"https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png";
+
+export const BACKGROUND_IMG =
+	"https://assets.nflxext.com/ffe/siteui/vlv3/30c8b9f4-3db9-4b3b-a1ee-8fa56531b712/web/SE-en-20251201-TRIFECTA-perspective_10c476f8-8bd5-42cb-a7ce-bb0a5471ffd1_large.jpg";
+
+export const USER_AVATAR =
+	"https://styles.redditmedia.com/t5_117tzg/styles/communityIcon_2khszu8hodt41.png?width=128&frame=1&auto=webp&s=511948cbaeaf65d3213c003acb55772d404383c9";
+
+export const API_OPTIONS = {
+	method: "GET",
+	headers: {
+		accept: "application/json",
+		Authorization:
+			"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMGQzODYxNzEzMzE2Yjc5MTU5OWFjZWQ2MDgzNGQzOSIsIm5iZiI6MTc2NTMwNzEzNC40MTUsInN1YiI6IjY5Mzg3MmZlNzg0NDY0MjBlMGViMWQxMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.w2Qw_qY1q3xZJvtuB3gKuDMwVC4T2Ha1jkoHOBGnQa0",
+	},
+};
+
+export const API_URLS = {
+	Playing:
+		"https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+};

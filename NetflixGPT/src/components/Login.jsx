@@ -7,12 +7,11 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
-import { useNavigate } from "react-router";
-import { addUser, removeUser } from "../redux/userSlice.js";
-import { useDispatch } from "react-redux";
+import { addUser } from "../redux/userSlice.js";
+import { useDispatch } from "react-redux/alternate-renderers";
+import { BACKGROUND_IMG, USER_AVATAR } from "../utils/constants.js";
 
 const Login = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
   const [isSignIn, setIsSignIn] = useState(true);
@@ -45,19 +44,16 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://styles.redditmedia.com/t5_117tzg/styles/communityIcon_2khszu8hodt41.png?width=128&frame=1&auto=webp&s=511948cbaeaf65d3213c003acb55772d404383c9",
+            photoURL: USER_AVATAR,
           }).then(() => {
             // Profile updated!
             const { uid, email, displayName, photoURL } = auth.currentUser;
             dispatch(addUser({ uid, email, displayName, photoURL }));
-
-            navigate("/browse");
           }).catch((error) => {
             // An error occurred
             setErrorMessage(error);
           });
-          console.log(user);
+          //console.log(user);
           // ...
         })
         .catch((error) => {
@@ -76,8 +72,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
+          //console.log(user);
           // ...
         })
         .catch((error) => {
@@ -94,7 +89,7 @@ const Login = () => {
         <Header />
         <img
           alt="background-image"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/30c8b9f4-3db9-4b3b-a1ee-8fa56531b712/web/SE-en-20251201-TRIFECTA-perspective_10c476f8-8bd5-42cb-a7ce-bb0a5471ffd1_large.jpg"
+          src={BACKGROUND_IMG}
         />
       </div>
       <form
@@ -102,7 +97,7 @@ const Login = () => {
         onSubmit={(e) => e.preventDefault()}
       >
         <h1 className="font-bold text-3xl py-2">
-          {isSignIn ? "Sign in(Login)" : "Sing up"}
+          {isSignIn ? "Sign in(Login)" : "Sign up"}
         </h1>
         {!isSignIn && (
           <input
@@ -126,7 +121,7 @@ const Login = () => {
         />
         <p className="text-red-500 font-bold">{errorMessage}</p>
         <button
-          className="py-4 my-6 bg-[#c11119] w-full font-bold rounded-lg"
+          className="py-4 my-6 bg-[#c11119] w-full font-bold rounded-lg cursor-pointer"
           onClick={handleButtonClick}
         >
           {isSignIn ? "Sign in" : "Sign up"}
