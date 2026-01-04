@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from "react-redux/alternate-renderers";
 import lang from "../../utils/languageConstants.js";
 import { useRef } from "react";
-import initializeAI from "../../utils/initializeAI.js";
 import { addSearchResults } from "../../redux/searchSlice.js";
 import fetchSearchedMovies from "../../utils/fetchSearchedMovies.js";
+import generateAnswer from "../../../src/utils/generateAnswer.js";
 
 const SearchBar = () => {
-  const ai = initializeAI();
   const dispatch = useDispatch();
 
   const langKey = useSelector((store) => store.config.lang);
@@ -16,15 +15,17 @@ const SearchBar = () => {
       "Act as movies recommendation system and recommend some movies for query : " +
       searchText.current.value +
       ". give only five movies name in comma separated format. your response should look like Movieresult1|Movieresult|Movieresult3|Movieresult4|Movieresult5";
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: query,
-    });
+    const response = await generateAnswer(query);
+    console.log("In search bar response is : " + response);
+    // const response = await ai.models.generateContent({
+    //   model: "gemini-2.5-flash",
+    //   contents: query,
+    // });
     const responseArr = [];
     if (!response) {
       responseArr.push("Gemini API failure: No response");
     } else {
-      responseArr.push(...response.text.split("|"));
+      responseArr.push(...response.split("|"));
       const promiseArr = responseArr.map((movie) => fetchSearchedMovies(movie));
       const movieResult = await Promise.all(promiseArr);
       dispatch(
