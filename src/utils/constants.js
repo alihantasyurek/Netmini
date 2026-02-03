@@ -1,4 +1,4 @@
-export const LOGO = "../../img/Logo.png";
+export const LOGO = "/img/Logo.png";
 
 export const BACKGROUND_IMG =
   "https://assets.nflxext.com/ffe/siteui/vlv3/30c8b9f4-3db9-4b3b-a1ee-8fa56531b712/web/SE-en-20251201-TRIFECTA-perspective_10c476f8-8bd5-42cb-a7ce-bb0a5471ffd1_large.jpg";
